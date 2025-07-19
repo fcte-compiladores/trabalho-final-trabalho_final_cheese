@@ -1,79 +1,297 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Hppw7Zh2)
-# Trabalho Final
+# Interpretador Cheese++ - Trabalho final de Compiladores em 2025.1
 
-## Escopo e organização
+Este trabalho teve como objetivo a implementação de um interpretador completo para a linguagem de programação Cheese++, utilizando Python e Lark para análise sintática.
 
-O trabalho é de tema livre dentro do escopo da disciplina de compiladores e
-consiste no desenvolvimento de alguma aplicação na área da disciplina (um
-interpretador para uma linguagem simples, compilador, analisadores de código,
-etc.)
+## Trabalho Desenvolvido Por
 
-O trabalho pode ser feito em grupos de até 4 pessoas.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ailujana">
+        <img src="https://avatars.githubusercontent.com/u/107697177?v=4" width="100" height="100" style="border-radius: 50%; object-fit: cover;" alt="Ana Júlia Mendes"/>
+        <br /><sub><b>Ana Júlia Mendes 221007798</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Tutzs">
+        <img src="https://avatars.githubusercontent.com/u/110691207?v=4" width="100" height="100" style="border-radius: 50%; object-fit: cover;" alt="Arthur Sousa"/>
+        <br /><sub><b>Arthur Sousa 221022462</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/julia-fortunato">
+        <img src="https://avatars.githubusercontent.com/u/118139107?v=4" width="100" height="100" style="border-radius: 50%; object-fit: cover;" alt="Júlia Fortunato"/>
+        <br /><sub><b>Júlia Fortunato 221022355</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Oleari19">
+        <img src="https://avatars.githubusercontent.com/u/110275583?v=4" width="100" height="100" style="border-radius: 50%; object-fit: cover;" alt="Maria Clara Oleari"/>
+        <br /><sub><b>Maria Clara Oleari 221008338</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-## Estrutura
+## Sobre o Cheese++
 
-Os trabalhos devem ser entregues na atividade própria no [github-classrrom](...).
-Cada repositório deve ter uma estrutura parecida com a delineada abaixo:
+Cheese++ é uma linguagem de programação baseada quase inteiramente nos princípios operacionais do queijo. A linguagem é case-sensitive e possui uma sintaxe única inspirada em nomes de queijos.
 
-* **README:** o arquivo README.md na base do repositório deve descrever os
-  detalhes da implementação do código. O README deve ter algumas seções 
-  obrigatórias:
-  - **Título**: nome do projeto
-  - **Integrantes**: lista com os nomes, matrículas e turma de cada integrante.
-  - **Introdução**: deve detalhar o que o projeto implementou, quais foram as
-    estratégias e algoritmos relevantes. Se o projeto implementa uma linguagem
-    não-comum ou um subconjunto de uma linguagem comum, deve conter alguns
-    exemplos de comandos nesta linguagem, descrendo a sua sintaxe e semântica,
-    quando necessário.
-  - **Instalação**: deve detalhar os passos para instalar as dependências e
-    rodar o código do projeto. Pode ser algo simples como *"Rode
-    `uv run lox hello.lox` para executar o interpretador."*, se a linguagem de
-    implementação permitir este tipo de facilidade.
+A referência utilizada para entendimento e estudo da linguagem foi [Cheese++ - Esolang](https://esolangs.org/wiki/Cheese%2B%2B).
 
-    Você pode usar gerenciadores de pacotes específicos de linguagens populares
-    como uv, npm, cargo, etc, containers Docker/Podman, ou `.nix`.
-  - **Exemplos**: o projeto deve conter uma pasta "exemplos" com alguns arquivos
-    na linguagem de programação implementada. Deve conter exemplos com graus
-    variáveis de complexidade. Algo como: hello world, fibonacci, função
-    recursiva, alguma estrutura de dados e para finalizar um algoritmo um pouco
-    mais elaborado como ordenamento de listas, busca binária, etc.
+## Sintaxe Básica
+
+| Comando | Descrição |
+|---------|-----------|
+| `Cheese` | Início do programa |
+| `NoCheese` | Fim do programa |
+| `Wensleydale()` | Imprimir no console |
+| `Swiss...Swiss` | Equivalente a aspas, usado para criar strings |
+| `Glyn(operation)` | Função de variável - deve ser invocada em toda operação envolvendo variáveis |
+| `Cheddar...Coleraine` | Estrutura de repetição (repeat...until) |
+| `Stilton...Blue...White` | Estrutura condicional (if...then...else) |
+| `Belgian` | Imprime todo o código fonte do programa (útil para debug) |
+| `Brie` | Termina uma linha/seção de código |
+
+## Exemplos
+
+### Hello World
+```cheese
+Cheese
+   Wensleydale(SwissHello WorldSwiss) Brie
+NoCheese
+```
+
+### Declaração de Variáveis
+```cheese
+Cheese
+Glyn(x) Cheddar 10 Coleraine
+Glyn(y) Cheddar 20 Coleraine
+Wensleydale(Glyn(x)) Brie
+NoCheese
+```
+
+### Operações Aritméticas
+```cheese
+Cheese
+Glyn(a) = 5;
+Glyn(b) = a plus 3;
+Wensleydale(Glyn(b)) Brie
+NoCheese
+```
+
+### Estruturas Condicionais
+```cheese
+Cheese
+Glyn(x) Cheddar 10 Coleraine
+Stilton Glyn(x) greater 5 Blue
+    Wensleydale(SwissX é maior que 5Swiss) Brie
+White
+    Wensleydale(SwissX é menor ou igual a 5Swiss) Brie
+NoCheese
+```
+
+### Loops
+```cheese
+Cheese
+Glyn(i) Cheddar 0 Coleraine
+Cheddar
+    Wensleydale(Glyn(i)) Brie
+    Glyn(i) Cheddar Glyn(i) plus 1 Coleraine
+Coleraine Glyn(i) minor 5
+NoCheese
+```
+
+## Operadores Suportados
+
+### Aritméticos
+- `+` ou `plus` (adição)
+- `-` ou `minus` (subtração)
+- `*` ou `times` (multiplicação)
+- `/` ou `divided` (divisão)
+
+### Comparação
+- `==` ou `equals` (igual)
+- `!=` ou `not_equals` (diferente)
+- `<` ou `less` ou `minor` (menor)
+- `>` ou `greater` ou `great` (maior)
+- `<=` ou `less_equals` (menor ou igual)
+- `>=` ou `greater_equals` (maior ou igual)
+
+## Estrutura do Projeto
+
+```
+tf_comp_cheesepp/
+├── cheesepp/
+│   ├── __init__.py      # Módulo principal
+│   ├── __main__.py      # Execução como módulo Python
+│   ├── ast.py           # Árvore Sintática Abstrata
+│   ├── cli.py           # Interface de linha de comando
+│   ├── ctx.py           # Gerenciamento de contexto e símbolos
+│   ├── errors.py        # Definições de erros customizados
+│   ├── grammar.lark     # Gramática formal da linguagem
+│   ├── node.py          # Nós da AST e estruturas de dados
+│   ├── parser.py        # Analisador sintático
+│   ├── runtime.py       # Runtime/Interpretador
+│   ├── testing.py       # Sistema de testes integrado
+│   └── transformer.py   # Transformador AST
+├── exemplos/
+│   ├── exemplo_01.cheesepp
+│   ├── exemplo_02.cheesepp
+│   ├── exemplo_03.cheesepp
+│   ├── exemplo_04.cheesepp
+│   ├── exemplo_05.cheesepp
+│   └── exemplo_06.cheesepp
+├── tests/
+│   ├── test_exemplo_01.py
+│   ├── test_exemplo_02.py
+│   ├── test_exemplo_03.py
+│   ├── test_exemplo_04.py
+│   ├── test_exemplo_05.py
+│   └── test_exemplo_06.py
+├── exemplo.py           # Script para executar exemplos
+└── README.md
+```
+
+## Implementação
+
+### Componentes Principais
+
+1. **Parser (parser.py)**: Utiliza Lark para análise sintática
+2. **AST (ast.py)**: Define as estruturas de dados da árvore sintática
+3. **Transformer (transformer.py)**: Converte a árvore Lark em AST customizada
+4. **Runtime (runtime.py)**: Interpretador que executa o código Cheese++
+5. **Grammar (grammar.lark)**: Gramática formal da linguagem
+6. **Context (ctx.py)**: Gerenciamento de contexto e tabela de símbolos
+7. **Errors (errors.py)**: Sistema de tratamento de erros customizado
+8. **Node (node.py)**: Definições de nós da AST e estruturas auxiliares
+9. **CLI (cli.py)**: Interface de linha de comando
+10. **Testing (testing.py)**: Sistema integrado de testes
     
-    Note que isto é apenas um guia da ordem de dificuldade dos problemas.
-    Algumas linguagens sequer permitem a implementação de alguns dos exemplos
-    acima.
-  - **Referências**: descreva as referências que você utilizou para a
-    implementação da linguagem. Faça uma breve descrição do papel de cada
-    referência ou como ela foi usada no projeto. Caso você tenha usado algum 
-    código existente como referência, descreva as suas contribuições originais
-    para o projeto.
-  - **Estrutura do código**: faça uma descrição da estrutura geral do código
-    discutindo os módulos, classes, estruturas de dados ou funções principais. 
-    Explicite onde as etapas tradicionais de compilação (análise léxica, 
-    sintática, semântica, etc) são realizadas, quando relevante.
-  - **Bugs/Limitações/problemas conhecidos**: discuta as limitações do seu
-    projeto e problemas conhecidos e coisas que poderiam ser feitas para
-    melhorá-lo no futuro. Note: considere apenas melhorias incrementais e não
-    melhorias grandes como: "reimplementar tudo em Rust".
-* **Código:** O codigo fonte deve estar presente no repositório principal junto com
-  a declaração das suas dependências. Cada linguagem possui um mecanismo
-  específico para isso, mas seria algo como o arquivo pyproject.toml em Python
-  ou package.json no caso de Javascript.
+### Funcionalidades Implementadas
 
-## Critérios
+- Análise léxica e sintática completa
+- Suporte a strings Swiss com caracteres especiais e acentos
+- Três tipos de declaração de variáveis:
+  - `Glyn(var, expr)` - Estilo função
+  - `Glyn(var) = expr` - Estilo assignment
+  - `Glyn(var) Cheddar expr Coleraine` - Estilo Cheese++
+- Operadores aritméticos e de comparação (símbolos e palavras)
+- Estruturas condicionais (if/else)
+- Estruturas de repetição (loops)
+- Comando Belgian para debug
+- Sistema de variáveis com ambiente de execução
+- Tratamento de erros de sintaxe
+- Tabela de símbolos e gerenciamento de contexto
+- Sistema de testes integrado
 
-Cada trabalho começa com 100% e pode receber penalizações ou bônus de acordo com
-os critérios abaixo:
+## Como Executar
 
-- Ausência do README: -50%
-- Instruções de instalação não funcionam: até -20%
-- Referências não atribuídas ou falta de referâncias: -10%
-- Código confuso ou mal organizado: até -15%
-- Falta de clareza em apresentar as técnicas e etapas de compilação: -15%
-- Bugs e limitações sérias na implementação: até -25%
-- Escopo reduzido, ou implementação insuficiente: até 25%
-- Uso de código não atribuído/plágio: até -100%
-- Repositório bem estruturado e organizado: até 10%
-- Linguagem com conceitos originais/interessantes: até +15%
-- Testes unitários: até +15%, dependendo da cobertura
+### Pré-requisitos
+- Python 3.13+
+- uv (gerenciador de pacotes moderno): [Instalar uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-Após aplicar todos os bônus, a nota é truncada no intervalo 0-100%. 
+### Dependências
+- **lark**: Parser generator para análise sintática
+- **pytest**: Framework de testes
+- 
+### Configuração do Ambiente
+```bash
+# 1. Instalar dependências
+uv sync
+
+# 2. Ou executar diretamente com uv run
+uv run pytest
+```
+
+### Executar Testes
+```bash
+# Todos os testes
+uv run pytest
+
+# Teste específico por número
+uv run pytest -k "01"
+
+# Teste específico por arquivo
+uv run pytest tests/test_exemplo_01.py
+
+# Modo detalhado (mostra cada teste individual)
+uv run pytest -v
+
+```
+
+### Executar Exemplos Cheese++
+
+Para executar os exemplos:
+
+```bash
+# Para rodar todos os exemplos
+uv run python exemplo.py all 
+
+# ou
+uv run python exemplo.py a
+
+# Rodar exemplo específico 
+uv run python exemplo.py exemplos/exemplo_01.cheesepp
+```
+ 
+## Resultados dos Testes
+
+Mais de 30 testes foram implementados, cobrindo todas as funcionalidades da linguagem com 100% de aproveitamento.
+
+6 testes foram implementados, e possuem 100% de aproveitamento. São eles:
+
+- **test_exemplo_01**: Assignments e expressões aritméticas
+- **test_exemplo_02**: Múltiplas funcionalidades integradas
+- **test_exemplo_03**: Strings com acentos e caracteres especiais
+- **test_exemplo_04**: Estruturas condicionais
+- **test_exemplo_05**: Loops e operadores em palavras
+- **test_exemplo_06**: Strings Swiss e comando Belgian
+
+### Testes de Operações Matemáticas (test_exemplo_08)
+
+- **test_operacoes_matematicas**: Testa todas as operações aritméticas básicas (+, -, *, /)
+- **test_operacoes_em_portugues**: Verifica operações matemáticas em português (plus, minus, times, divided)
+- **test_comparacoes_logicas**: Testa operadores de comparação com símbolos (==, !=, >, <, >=, <=)
+- **test_comparacoes_em_portugues**: Verifica comparações em português (equals, not_equals, greater, less, etc.)
+
+### Testes de Debug e Print (test_exemplo_09)
+
+- **test_belgian_com_codigo_fonte**: Comando Belgian para debug com código fonte
+- **test_belgian_sem_codigo_fonte**: Belgian quando não há código fonte disponível
+- **test_prints_multiplos**: Múltiplos comandos Wensleydale sequenciais
+- **test_print_calculos**: Print de cálculos diretos e expressões
+
+### Testes de Estruturas Condicionais (test_exemplo_10)
+
+- **test_if_simples**: Estruturas condicionais básicas (then branch)
+- **test_if_else_falso**: Testa o else branch quando a condição é falsa
+- **test_if_aninhado**: Estruturas condicionais aninhadas (if dentro de else)
+- **test_if_multiplas_operacoes**: Múltiplas operações dentro dos branches then/else
+
+### Testes de Strings (test_exemplo_11)
+
+- **test_strings_simples**: Manipulação básica de strings Swiss com diferentes tipos de conteúdo
+- **test_strings_vazias_e_espacos**: Strings com espaços, caracteres especiais e acentos
+- **test_strings_com_numeros**: Strings contendo números e teste de impressão de strings
+
+### Testes de Variáveis (test_exemplo_12)
+
+- **test_sintaxes_atribuicao**: Testa todas as três sintaxes de atribuição disponíveis:
+  - `Glyn(var) = expr` (estilo assignment)
+  - `Glyn(var, expr)` (estilo função)  
+  - `Glyn(var) Cheddar expr Coleraine` (estilo Cheese++)
+- **test_acesso_variaveis**: Diferentes formas de acessar e referenciar variáveis
+- **test_expressoes_complexas**: Expressões matemáticas complexas com precedência de operadores
+- **test_variaveis_nao_definidas**: Comportamento com variáveis não definidas (retornam 0)
+
+**Total: 100% dos testes passando** 
+
+## Histórico de versões
+
+|Versão|Data|Descrição|Autor|
+|:----:|----|---------|-----|
+|`1.0`|14/07/2025|Criação do README com o comando dos testes|[Ana Julia](https://github.com/ailujana)|
+|`1.1`|15/07/2025|Criação do README completo|[Maria Clara](https://github.com/Oleari19)|
+|`1.2`|15/07/2025|Adequação e correção do README|[Júlia Fortunato](https://github.com/julia-fortunato)|
+|`1.3`|16/07/2025|Estruturação final|[Maria Clara](https://github.com/Oleari19)|
